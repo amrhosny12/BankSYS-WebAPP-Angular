@@ -1,0 +1,53 @@
+<div class="row">
+  <nav class="navbar navbar-light" style="background-color: #0e0e46d2;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="/" style="cursor: pointer;"
+          ><img src="assets/Logo.jpg" alt="BankSYS"
+        /></a>
+      </div>
+      <ul class="nav nav-pills nav-justified">
+        <li
+          class="nav-item"
+          routerLinkActive="active-link"
+          *ngIf="isAuthenticated"
+          (click)="disableDetails()"
+        >
+          <a routerLink="/accounts">Accounts</a>
+        </li>
+        <li
+          class="nav-item"
+          routerLinkActive="active-link"
+          *ngIf="isAuthenticated"
+        >
+          <a routerLink="/Feature1">Transfers</a>
+        </li>
+        <li
+          class="nav-item"
+          routerLinkActive="active-link"
+          *ngIf="isAuthenticated"
+        >
+          <a routerLink="/Feature2">Bills</a>
+        </li>
+        <li
+          class="nav-item"
+          routerLinkActive="active-link"
+          *ngIf="isAuthenticated"
+        >
+          <a routerLink="/Feature3">Documents</a>
+        </li>
+        <li
+          class="nav-item"
+          routerLinkActive="active-link"
+          *ngIf="isAuthenticated"
+        >
+          <a routerLink="/Feature4">Service Center</a>
+        </li>
+        <li *ngIf="isAuthenticated">
+          <a style="cursor: pointer;" (click)="onLogout()"
+            ><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

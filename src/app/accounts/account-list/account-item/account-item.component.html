@@ -1,0 +1,14 @@
+<ul class="list-group">
+  <li class="list-group-item">
+    <div class="panel-body">
+      <div class="pull-left">
+        <h4>{{ account.description }} - {{ account.accountNumber | digits }}</h4>
+        <a class="text-warning link-color" [routerLink]="[id]" routerLinkActive="active" (click)="displayDetail()">Account Detail</a>
+      </div>
+      <div class="pull-right">
+        <h4>{{ account.balance | currency }}</h4>
+      </div>
+    </div>
+  </li>
+</ul>
+

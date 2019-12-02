@@ -1,0 +1,17 @@
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">
+    <h5>Account Number - {{ account.accountNumber }}</h5>
+  </li>
+  <li class="list-group-item">
+    <h5>Routing Number - {{ account.routingNumber }}</h5>
+  </li>
+  <li class="list-group-item">
+    <h5>Account Type - {{ account.accountType }}</h5>
+  </li>
+  <li class="list-group-item">
+    <h5>Description - {{ account.description }}</h5>
+  </li>
+  <li class="list-group-item">
+    <h5>Balance - {{ account.balance | currency }}</h5>
+  </li>
+</ul>

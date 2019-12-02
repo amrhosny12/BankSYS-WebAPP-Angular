@@ -1,0 +1,25 @@
+<div class="row">
+  <div [ngClass]="getAccountClass()">
+    <div class="panel panel-default">
+      <div class="panel-heading main-heading">
+        <h1>Accounts</h1>
+      </div>
+      <div class="panel-body">
+        <app-account-list></app-account-list>
+      </div>
+      <div class="panel-footer"></div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-4" *ngIf="splitSection">
+    <div class="panel panel-default">
+      <div class="panel-heading main-heading">
+        <div [ngSwitch]="splitSection">
+          <h2 *ngSwitchCase="'Details'">Details</h2>
+          <h2 *ngSwitchDefault>...</h2>
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+      <div class="panel-footer"></div>
+    </div>
+  </div>
+</div>

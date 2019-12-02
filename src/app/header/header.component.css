@@ -1,0 +1,26 @@
+a img {
+    height: 50px;
+    width: 340px;
+}
+
+li a {
+    font-size: large;
+    color: #ffffff;
+}
+
+li a:hover {
+    /* background-color: black; */
+    color: #4d5152;
+    height: 50px;
+
+}
+
+.active-link a{
+    color: #4d5152;
+    background-color: #ffffff;
+    height: 50px;
+}
+
+
+
+
