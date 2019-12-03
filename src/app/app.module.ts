@@ -16,6 +16,9 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { FourDigitPipe } from './pipes/four-digit.pipe';
+import { TransfersComponent } from './transfers/transfers.component';
+import { BillsComponent } from './bills/bills.component';
+import { DocumentsComponent } from './documents/documents.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { FourDigitPipe } from './pipes/four-digit.pipe';
     LoadingSpinnerComponent,
     LoginComponent,
     SignupComponent,
-    FourDigitPipe
+    FourDigitPipe,
+    TransfersComponent,
+    BillsComponent,
+    DocumentsComponent
   ],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [

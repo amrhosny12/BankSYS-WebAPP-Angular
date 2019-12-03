@@ -11,14 +11,14 @@ import { Account } from './account.model';
 })
 export class AccountService {
 
-  baseUrl = environment.baseUrl;
+  BASEURL = environment.BASEURL;
 
   splitSection = new Subject<string>();
 
   constructor(private http: HttpClient) {}
 
   fetchAccounts() {
-    const URL = this.baseUrl + '/customer/accounts';
+    const URL = this.BASEURL + '/customer/accounts';
     return this.http.get<{ [accounts: string]: Account[] }>(URL).pipe(
       map(responseData => {
         let acctArray: Account[] = null;
@@ -32,7 +32,7 @@ export class AccountService {
   }
 
   fetchAccount(id: string) {
-    const URL = this.baseUrl + '/customer/account/' + id;
+    const URL = this.BASEURL + '/customer/account/' + id;
     return this.http.get<{ [account: string]: Account }>(URL).pipe(
       map(responseData => {
         let account: Account = null;

@@ -18,14 +18,14 @@ export interface AuthResponseData {
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = environment.baseUrl;
+  BASEURL = environment.BASEURL;
   userSubject = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {}
 
   signup(username: string, password: string, email: string, phone: string) {
-    const URL = this.baseUrl + '/auth/signup';
+    const URL = this.BASEURL + '/auth/signup';
     return this.http
       .post<AuthResponseData>(URL, {
         username,
@@ -43,7 +43,7 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    const URL = this.baseUrl + '/auth/login';
+    const URL = this.BASEURL + '/auth/login';
     return this.http
       .post<AuthResponseData>(URL, {
         username,

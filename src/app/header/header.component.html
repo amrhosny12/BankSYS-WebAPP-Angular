@@ -20,29 +20,29 @@
           routerLinkActive="active-link"
           *ngIf="isAuthenticated"
         >
-          <a routerLink="/Feature1">Transfers</a>
+          <a routerLink="/transfers">Transfers</a>
         </li>
         <li
           class="nav-item"
           routerLinkActive="active-link"
           *ngIf="isAuthenticated"
         >
-          <a routerLink="/Feature2">Bills</a>
+          <a routerLink="/bills">Bills</a>
         </li>
         <li
           class="nav-item"
           routerLinkActive="active-link"
           *ngIf="isAuthenticated"
         >
-          <a routerLink="/Feature3">Documents</a>
+          <a routerLink="/documents">Documents</a>
         </li>
-        <li
+        <!-- <li
           class="nav-item"
           routerLinkActive="active-link"
           *ngIf="isAuthenticated"
         >
           <a routerLink="/Feature4">Service Center</a>
-        </li>
+        </li> -->
         <li *ngIf="isAuthenticated">
           <a style="cursor: pointer;" (click)="onLogout()"
             ><span class="glyphicon glyphicon-log-out"></span> Logout</a>
