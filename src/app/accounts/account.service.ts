@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { throwError, Subject } from 'rxjs';
+import { throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
@@ -12,8 +12,6 @@ import { Account } from './account.model';
 export class AccountService {
 
   BASEURL = environment.BASEURL;
-
-  splitSection = new Subject<string>();
 
   constructor(private http: HttpClient) {}
 

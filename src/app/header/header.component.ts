@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { AuthService } from '../auth/auth.service';
 import { AccountService } from '../accounts/account.service';
+import { SharedSubjectService } from '../shared/services/shared-subject.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
   private userSub: Subscription;
 
-  constructor(private authService: AuthService, private accountService: AccountService) { }
+  constructor(private authService: AuthService, private sharedSubjectService: SharedSubjectService) { }
 
   ngOnInit() {
     this.userSub = this.authService.userSubject.subscribe(user => {
@@ -27,7 +28,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   disableDetails() {
-    this.accountService.splitSection.next(null);
+    this.sharedSubjectService.splitSection.next(null);
   }
 
   ngOnDestroy() {

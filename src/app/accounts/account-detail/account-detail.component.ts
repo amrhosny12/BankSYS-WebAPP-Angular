@@ -5,6 +5,7 @@ import {map, switchMap, exhaustMap} from 'rxjs/operators';
 
 import {Account} from '../account.model';
 import {AccountService} from '../account.service';
+import {SharedSubjectService} from '../../shared/services/shared-subject.service';
 
 @Component({
   selector: 'app-account-detail',
@@ -24,11 +25,12 @@ export class AccountDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private accountService: AccountService,
+    private sharedSubjectService: SharedSubjectService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.accountService.splitSection.next('Details');
+    this.sharedSubjectService.splitSection.next('Details');
     this.subscription = this.route.params
     .pipe(
       map((params: Params) => {

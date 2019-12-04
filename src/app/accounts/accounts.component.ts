@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AccountService } from './account.service';
+import { SharedSubjectService } from '../shared/services/shared-subject.service';
 
 @Component({
   selector: 'app-accounts',
@@ -12,12 +12,14 @@ export class AccountsComponent implements OnInit {
 
   openSection: boolean;
   splitSection: string;
+  isCollapsed: boolean;
 
-  constructor(private accountService: AccountService, private router: Router) { }
+  constructor(private sharedSubjectService: SharedSubjectService, private router: Router) { }
 
   ngOnInit() {
+    this.isCollapsed = false;
     this.router.navigate(['accounts']);
-    this.accountService.splitSection.subscribe(result => {
+    this.sharedSubjectService.splitSection.subscribe(result => {
       this.splitSection = result;
     });
   }

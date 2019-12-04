@@ -9,6 +9,7 @@ import { BillsComponent } from './bills/bills.component';
 import { DocumentsComponent } from './documents/documents.component';
 
 import { AuthGuard } from './auth/auth.guard';
+import { AccountAddComponent } from './accounts/account-add/account-add.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/accounts', pathMatch: 'full' },
@@ -19,7 +20,10 @@ const routes: Routes = [
     path: 'accounts',
     component: AccountsComponent,
     canActivate: [AuthGuard],
-    children: [{ path: ':id', component: AccountDetailComponent }]
+    children: [
+      { path: ':id', component: AccountDetailComponent },
+      { path: 'add', component: AccountAddComponent }
+    ]
   },
   {
     path: 'transfers', component: TransfersComponent

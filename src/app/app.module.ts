@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,10 +16,11 @@ import { HeaderComponent } from './header/header.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
-import { FourDigitPipe } from './pipes/four-digit.pipe';
 import { TransfersComponent } from './transfers/transfers.component';
 import { BillsComponent } from './bills/bills.component';
 import { DocumentsComponent } from './documents/documents.component';
+import { AccountAddComponent } from './accounts/account-add/account-add.component';
+import { FourDigitPipe } from './pipes/four-digit.pipe';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { DocumentsComponent } from './documents/documents.component';
     AccountListComponent,
     AccountItemComponent,
     AccountDetailComponent,
+    AccountAddComponent,
     AuthComponent,
     HeaderComponent,
     LoadingSpinnerComponent,
@@ -37,7 +40,7 @@ import { DocumentsComponent } from './documents/documents.component';
     BillsComponent,
     DocumentsComponent
   ],
-  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
+  imports: [BrowserModule, FormsModule, HttpClientModule, NgbModule, AppRoutingModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
