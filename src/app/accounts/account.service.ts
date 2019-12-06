@@ -6,6 +6,18 @@ import { map, catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Account } from './account.model';
 
+export interface AccountResponseData {
+  message: string;
+  account: {
+    accountNumber: string;
+    routingNumber: string;
+    accountType: string;
+    description: string;
+    balance: string;
+    _id: string;
+  };
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -37,6 +49,21 @@ export class AccountService {
         account = responseData.account;
         return account;
       }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
+
+  addAccount(accountNumber: string, routingNumber: string, description: string, accountType: string, balance: string) {
+    const URL = this.BASEURL + '/customer/account';
+    return this.http.post<AccountResponseData>(URL, {
+      accountNumber,
+      routingNumber,
+      description,
+      accountType,
+      balance
+    }).pipe (
       catchError(errorRes => {
         return throwError(errorRes);
       })

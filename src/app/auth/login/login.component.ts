@@ -1,17 +1,19 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
 
 import {AuthService} from '../auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
   error: string = null;
   isLoading = false;
+  subscription: Subscription;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -23,7 +25,7 @@ export class LoginComponent {
     const username = form.value.username;
     const password = form.value.password;
     this.isLoading = true;
-    this.authService.login(username, password).subscribe(
+    this.subscription = this.authService.login(username, password).subscribe(
       resData => {
         this.router.navigate(['/accounts']);
         this.isLoading = false;
@@ -35,4 +37,11 @@ export class LoginComponent {
     );
     form.reset();
   }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
 }

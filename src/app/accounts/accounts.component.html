@@ -25,11 +25,13 @@
 </div>
 <div class="row">
   <div class="col-xs-12 col-md-6 col-md-offset-1">
-      <button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="addAccountForm">Add Account</button>
-      <div id="addAccountForm" [ngbCollapse]="!isCollapsed">
-        <br>
-        <app-account-add></app-account-add>
-      </div>
+    <div *ngIf="!isCollapsed">
+        <button type="button" class="btn btn-primary" (click)="openAccountModel()" [attr.aria-expanded]="!isCollapsed" aria-controls="addAccountForm">Add Account</button>
+    </div>
+    <div id="addAccountForm" [ngbCollapse]="!isCollapsed">
+      <br>
+      <app-account-add></app-account-add>
+    </div>
   </div>
 
 </div>

@@ -21,6 +21,7 @@ import { BillsComponent } from './bills/bills.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { AccountAddComponent } from './accounts/account-add/account-add.component';
 import { FourDigitPipe } from './pipes/four-digit.pipe';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { FourDigitPipe } from './pipes/four-digit.pipe';
     FourDigitPipe,
     TransfersComponent,
     BillsComponent,
-    DocumentsComponent
+    DocumentsComponent,
+    FooterComponent
   ],
   imports: [BrowserModule, FormsModule, HttpClientModule, NgbModule, AppRoutingModule],
   providers: [

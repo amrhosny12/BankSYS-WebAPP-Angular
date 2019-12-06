@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://banksys-server-api.herokuapp.com'
+  BASEURL: 'https://banksys-server-api.herokuapp.com'
 };

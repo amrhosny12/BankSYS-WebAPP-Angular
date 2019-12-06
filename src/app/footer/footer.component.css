@@ -1,0 +1,43 @@
+ul li a:hover {
+    color: #6adb0e;
+}
+
+ul li a span {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: bold;
+}
+
+.ftop {
+  background-color: #0e0e46d2;
+  color: #ffffff;
+}
+
+.tp {
+  color: #ffffff;
+  text-decoration: none;
+  text-align: center;
+  margin-top: 30px;
+  font-size:24px;
+}
+
+.top-block {
+  text-align: center;
+  text-decoration: none;
+  list-style-type: none;
+  padding-bottom: 50px;
+}
+
+.fs {
+    padding: initial;
+}
+
+.bt-icon {
+    display: inline-block; 
+    vertical-align: middle;
+    margin: 0 2px 0 2px;
+    font-size: 26px;
+}
+
+.bt {
+    color: #0e0e46d2
+}

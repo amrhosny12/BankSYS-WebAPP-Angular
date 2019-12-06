@@ -5,8 +5,8 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedSubjectService {
-
   splitSection = new Subject<string>();
+  closeModel = new Subject<boolean>();
 
-  constructor() { }
+  constructor() {}
 }

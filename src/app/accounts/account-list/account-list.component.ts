@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { Account } from '../account.model';
 import { AccountService } from '../account.service';
+import { SharedSubjectService } from 'src/app/shared/services/shared-subject.service';
 
 
 @Component({
@@ -15,11 +16,10 @@ export class AccountListComponent implements OnInit, OnDestroy {
   accounts: Account[];
   subscription: Subscription;
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private sharedSubjectService: SharedSubjectService) { }
 
   ngOnInit() {
     this.subscription = this.onFetchAccounts();
-
   }
 
   onFetchAccounts() {
@@ -31,7 +31,9 @@ export class AccountListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 }
