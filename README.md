@@ -10,5 +10,6 @@ Run `npm run start:dev` for a dev server. Navigate to `http://localhost:4200/`. 
 
 App is deployed on a Heroku server, navigate to `https://banksys-webapp.herokuapp.com/`.
 
-----------
+==============================================================================================================================
+
 
