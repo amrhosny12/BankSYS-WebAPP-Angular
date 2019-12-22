@@ -1,9 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { SharedSubjectService } from '../../shared/services/shared-subject.service';
 import { AccountService } from '../account.service';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({

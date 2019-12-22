@@ -1,1 +1,35 @@
-<p>transfer-money works!</p>
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <h1>Transfer Money</h1>
+        <hr>
+        <form #transferMoney="ngForm" (ngSubmit)=onSubmit(transferMoney)>
+            <div class="form-group">
+                <label for="from">From</label>
+                <select class="form-control" aria-placeholder="Select Account" ngModel name="from" required>
+                    <option *ngFor="let acct of accounts; let i = index"> {{ acct.description }} - {{ acct.accountNumber | digits }}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="to">To</label>
+                <select class="form-control" aria-placeholder="Select Account" ngModel name="to" required>
+                    <ng-container *ngFor="let acct of accounts">
+                        <ng-container *ngIf="isNotSelectedFrom(transferMoney, acct)">
+                            <option> {{ acct.description }} - {{ acct.accountNumber | digits }}</option>
+                        </ng-container>
+                    </ng-container>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>	
+                    <input type="number" id="amount" class="form-control" aria-label="Amount (rounded to the nearest dollar)" ngModel name="amount" required>
+                    <!-- <span class="input-group-addon">.00</span> -->
+                </div>
+            </div>
+            <div class="pull-right">
+                <button type="submit" class="btn btn-primary" [disabled]="!transferMoney.valid">Make Transfer</button>
+            </div>
+        </form>
+    </div>
+</div>
