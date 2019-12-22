@@ -1,43 +1,34 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
-import { AuthComponent } from './auth/auth.component';
-import { AccountsComponent } from './accounts/accounts.component';
-import { AccountDetailComponent } from './accounts/account-detail/account-detail.component';
-import { TransfersComponent } from './transfers/transfers.component';
-import { BillsComponent } from './bills/bills.component';
-import { DocumentsComponent } from './documents/documents.component';
-
-import { AuthGuard } from './auth/auth.guard';
-import { AccountAddComponent } from './accounts/account-add/account-add.component';
-
-const routes: Routes = [
-  { path: '', redirectTo: '/accounts', pathMatch: 'full' },
+const appRoutes: Routes = [
   {
-    path: 'login', component: AuthComponent
+    path: '', redirectTo: '/accounts', pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: 'accounts',
-    component: AccountsComponent,
-    canActivate: [AuthGuard],
-    children: [
-      { path: ':id', component: AccountDetailComponent },
-      { path: 'add', component: AccountAddComponent }
-    ]
+    loadChildren: () => import('./accounts/accounts.module').then(m => m.AccountsModule)
   },
   {
-    path: 'transfers', component: TransfersComponent
+    path: 'transfers',
+    loadChildren: () => import('./transfers/transfers.module').then(m => m.TransfersModule)
   },
   {
-    path: 'bills', component: BillsComponent
+    path: 'bills',
+    loadChildren: () => import('./bills/bills.module').then(m => m.BillsModule)
   },
   {
-    path: 'documents', component: DocumentsComponent
-  }
+    path: 'documents',
+    loadChildren: () => import('./documents/documents.module').then(m => m.DocumentsModule)
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
