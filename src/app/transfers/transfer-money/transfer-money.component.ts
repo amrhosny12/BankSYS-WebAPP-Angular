@@ -12,22 +12,26 @@ import { AccountService } from '../../accounts/account.service';
 })
 export class TransferMoneyComponent implements OnInit, OnDestroy {
 
-  accounts: Account[];
-  fromAccountList: Account[];
-  toAccountList: Account[];
   subscription: Subscription;
+  selectFromDef = 0;
+  selectToDef = 0;
+  selectTypeDef = 0;
+  selectFreqDef = 0;
+  accounts: Account[];
+  showRecurringFields: boolean;
+  selectedFromAcctId: string;
+  selectedToAcctId: string;
 
-  @ViewChild('fromAccount', {static: true}) fromAccount: ElementRef;
-  @ViewChild('toAccount', {static: true}) toAccount: ElementRef;
 
   constructor(private accountService: AccountService) {}
 
   ngOnInit() {
+    this.showRecurringFields = false;
+    this.selectedFromAcctId = '';
+    this.selectedToAcctId = '';
     this.subscription = this.accountService.fetchAccounts().subscribe(
       accounts => {
         this.accounts = accounts;
-        this.fromAccountList = accounts;
-        this.toAccountList = accounts;
       },
       error => {
         console.log(error.message);
@@ -37,32 +41,36 @@ export class TransferMoneyComponent implements OnInit, OnDestroy {
 
   onSubmit(form: NgForm) {}
 
-  setFromAccounts(event) {
-    const selectedToAcctIndex = event.target.options.selectedIndex;
-    const selectedToAcctId = event.target.options[selectedToAcctIndex].id;
+  setSelectedFromAccountId(event) {
+    const selectedAcctIndex = event.target.options.selectedIndex;
+    const selectedAcctId = event.target.options[selectedAcctIndex].id;
+    this.selectedFromAcctId = selectedAcctId;
+  }
 
-    const tempFromAcctList: Account[] = [];
+  setSelectedToAccountId(event) {
+    const selectedAcctIndex = event.target.options.selectedIndex;
+    const selectedAcctId = event.target.options[selectedAcctIndex].id;
+    this.selectedToAcctId = selectedAcctId;
+  }
 
-    for (const acct of this.accounts) {
-      if (acct._id !== selectedToAcctId) {
-        tempFromAcctList.push(acct);
-      }
-      this.fromAccountList = tempFromAcctList;
+  selectType(event) {
+    const selectedType = event.target.selectedIndex;
+    if (selectedType !== 0) {
+      this.showRecurringFields = true;
+    } else {
+      this.showRecurringFields = false;
     }
   }
 
-  setToAccounts(event) {
-    const selectedToAcctIndex = event.target.options.selectedIndex;
-    const selectedToAcctId = event.target.options[selectedToAcctIndex].id;
-
-    const tempToAcctList: Account[] = [];
-
-    for (const acct of this.accounts) {
-      if (acct._id !== selectedToAcctId) {
-        tempToAcctList.push(acct);
-      }
-      this.toAccountList = tempToAcctList;
-    }
+  resetForm(form: NgForm) {
+    form.reset();
+    this.selectFromDef = 0;
+    this.selectToDef = 0;
+    this.selectTypeDef = 0;
+    this.selectFreqDef = 0;
+    this.selectedFromAcctId = '';
+    this.selectedToAcctId = '';
+    this.showRecurringFields = false;
   }
 
   ngOnDestroy() {
