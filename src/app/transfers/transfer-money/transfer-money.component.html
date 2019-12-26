@@ -2,22 +2,22 @@
     <div id="account-data" ngModelGroup="accountData" #accountData="ngModelGroup">
         <div class="form-group">
             <label for="from">From</label>
-            <select class="form-control" [(ngModel)]="selectFromDef" name="from" (change)="setSelectedFromAccountId($event)" required #fromAccount>
+            <select class="form-control" [(ngModel)]="selectFromDef" name="from" (change)="setSelectedFromAccountId($event)" required>
                 <option value="0">Select Account</option> 
                 <ng-container *ngFor="let acct of accounts; let i = index">
                         <ng-container *ngIf="acct._id !== selectedToAcctId">
-                            <option [value]="i+1" [id]="acct._id"> {{ acct.description }} - {{ acct.accountNumber | digits }}</option>
+                            <option [value]="acct.accountNumber" [id]="acct._id"> {{ acct.description }} - {{ acct.accountNumber | digits }}</option>
                         </ng-container>
                 </ng-container>
             </select>
         </div>
         <div class="form-group">
             <label for="to">To</label>
-            <select class="form-control" [(ngModel)]="selectToDef" name="to" (change)="setSelectedToAccountId($event)" required #toAccount>
+            <select class="form-control" [(ngModel)]="selectToDef" name="to" (change)="setSelectedToAccountId($event)" required>
                 <option value="0">Select Account</option> 
                 <ng-container *ngFor="let acct of accounts; let i = index">
                     <ng-container *ngIf="acct._id !== selectedFromAcctId">
-                        <option [value]="i+1" [id]="acct._id"> {{ acct.description }} - {{ acct.accountNumber | digits }}</option>
+                        <option [value]="acct.accountNumber" [id]="acct._id"> {{ acct.description }} - {{ acct.accountNumber | digits }}</option>
                     </ng-container>
                 </ng-container>
             </select>

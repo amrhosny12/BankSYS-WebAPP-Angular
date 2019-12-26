@@ -55,8 +55,13 @@ export class AccountService {
     );
   }
 
-  addAccount(accountNumber: string, routingNumber: string, description: string, accountType: string, balance: string) {
+  addAccount(account: Account) {
     const URL = this.BASEURL + '/customer/account';
+    const accountNumber = account.accountNumber;
+    const routingNumber = account.routingNumber;
+    const description = account.description;
+    const accountType = account.accountType;
+    const balance = account.balance;
     return this.http.post<AccountResponseData>(URL, {
       accountNumber,
       routingNumber,

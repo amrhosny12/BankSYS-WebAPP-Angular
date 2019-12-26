@@ -1,9 +1,11 @@
-import { Component, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm, NgModelGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { Account } from '../../accounts/account.model';
 import { AccountService } from '../../accounts/account.service';
+import { Transfer } from '../transfer.model';
+import { TransferService } from '../transfer.service';
 
 @Component({
   selector: 'app-transfer-money',
@@ -13,17 +15,20 @@ import { AccountService } from '../../accounts/account.service';
 export class TransferMoneyComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
+
   selectFromDef = 0;
   selectToDef = 0;
   selectTypeDef = 0;
   selectFreqDef = 0;
+
   accounts: Account[];
+  transfer: Transfer = null;
+
   showRecurringFields: boolean;
   selectedFromAcctId: string;
   selectedToAcctId: string;
 
-
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService, private transferService: TransferService) {}
 
   ngOnInit() {
     this.showRecurringFields = false;
@@ -39,7 +44,44 @@ export class TransferMoneyComponent implements OnInit, OnDestroy {
     );
   }
 
-  onSubmit(form: NgForm) {}
+  onSubmit(form: NgForm) {
+    const from = form.value.accountData.from;
+    const to = form.value.accountData.to;
+    const amount = form.value.amount;
+    const type = form.value.type;
+    if (type === 0) {
+      const date = new Date().toISOString();
+      this.transfer = {
+        from,
+        to,
+        amount,
+        type,
+        date
+      };
+    } else {
+      const date = form.value.date;
+      const frequency = form.value.frequency;
+      const memo = form.value.memo;
+      this.transfer = {
+        from,
+        to,
+        amount,
+        type,
+        date,
+        frequency,
+        memo
+      };
+    }
+    this.subscription = this.transferService.addTransfer(this.transfer).subscribe(
+      resData => {
+        console.log(resData);
+      },
+      errorMessage => {
+        console.log(errorMessage);
+      }
+    );
+    this.resetForm(form);
+  }
 
   setSelectedFromAccountId(event) {
     const selectedAcctIndex = event.target.options.selectedIndex;
@@ -76,5 +118,4 @@ export class TransferMoneyComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
 }
