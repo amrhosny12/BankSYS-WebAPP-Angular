@@ -1,20 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinner.component';
-import { FourDigitPipe } from '../shared/pipes/four-digit.pipe';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { FourDigitPipe } from './pipes/four-digit.pipe';
+import { TransactionType } from './pipes/transaction-type.pipe';
 
 @NgModule({
   declarations: [
     LoadingSpinnerComponent,
-    FourDigitPipe
+    FourDigitPipe,
+    TransactionType
   ],
   imports: [
     CommonModule
   ],
   exports: [
     LoadingSpinnerComponent,
-    FourDigitPipe
+    FourDigitPipe,
+    TransactionType
   ]
 })
 export class SharedModule { }

@@ -27,7 +27,7 @@ export class AccountService {
 
   constructor(private http: HttpClient) {}
 
-  fetchAccounts() {
+  getAccounts() {
     const URL = this.BASEURL + '/customer/accounts';
     return this.http.get<{ [accounts: string]: Account[] }>(URL).pipe(
       map(responseData => {
@@ -41,7 +41,7 @@ export class AccountService {
     );
   }
 
-  fetchAccount(id: string) {
+  getAccount(id: string) {
     const URL = this.BASEURL + '/customer/account/' + id;
     return this.http.get<{ [account: string]: Account }>(URL).pipe(
       map(responseData => {
@@ -62,16 +62,19 @@ export class AccountService {
     const description = account.description;
     const accountType = account.accountType;
     const balance = account.balance;
-    return this.http.post<AccountResponseData>(URL, {
-      accountNumber,
-      routingNumber,
-      description,
-      accountType,
-      balance
-    }).pipe (
-      catchError(errorRes => {
-        return throwError(errorRes);
+    return this.http
+      .post<AccountResponseData>(URL, {
+        accountNumber,
+        routingNumber,
+        description,
+        accountType,
+        balance
       })
-    );
+      .pipe(
+        catchError(errorRes => {
+          return throwError(errorRes);
+        })
+      );
   }
+  
 }

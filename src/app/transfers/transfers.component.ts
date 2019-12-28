@@ -1,15 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+
+import { TransferService } from './transfer.service';
+import { AccountService } from '../accounts/account.service';
 
 @Component({
   selector: 'app-transfers',
   templateUrl: './transfers.component.html',
   styleUrls: ['./transfers.component.css']
 })
-export class TransfersComponent implements OnInit {
+export class TransfersComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  subscription: Subscription;
+
+  constructor(private accountService: AccountService, private transferService: TransferService) { }
 
   ngOnInit() {
+    this.subscription = this.accountService.getAccounts().subscribe(
+      accounts => {
+        this.transferService.setTransferAccounts(accounts);
+        console.log('TRANSFER - ON INIT');
+      },
+      error => {
+        console.log(error.message);
+      }
+    );
   }
 
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }

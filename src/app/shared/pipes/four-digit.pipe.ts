@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-    name: 'digits'
+    name: 'starDigits'
 })
 export class FourDigitPipe implements PipeTransform {
     transform(value: any) {

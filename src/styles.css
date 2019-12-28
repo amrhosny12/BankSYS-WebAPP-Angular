@@ -2,12 +2,9 @@
     background-color: #0e0e46d2;
 }
 
-.main-heading {
-    background-color: #0d6363;
-}
-
-.heading {
-    background-color: #ffffff;
+.bks-panel-heading {
+    background-color: #0e0e46d2;
+    color: white;
 }
 
 .under-construction {

@@ -37,7 +37,7 @@ export class AccountDetailComponent implements OnInit, OnDestroy {
         this.id = params.id;
         }),
         exhaustMap(() => {
-          return this.accountService.fetchAccount(this.id);
+          return this.accountService.getAccount(this.id);
         })
         )
         .subscribe(

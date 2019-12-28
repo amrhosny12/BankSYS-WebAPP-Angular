@@ -6,7 +6,7 @@
                 <option value="0">Select Account</option> 
                 <ng-container *ngFor="let acct of accounts; let i = index">
                         <ng-container *ngIf="acct._id !== selectedToAcctId">
-                            <option [value]="acct.accountNumber" [id]="acct._id"> {{ acct.description }} - {{ acct.accountNumber | digits }}</option>
+                            <option [value]="acct.accountNumber" [id]="acct._id"> {{ acct.description }} - {{ acct.accountNumber | starDigits }}</option>
                         </ng-container>
                 </ng-container>
             </select>
@@ -17,7 +17,7 @@
                 <option value="0">Select Account</option> 
                 <ng-container *ngFor="let acct of accounts; let i = index">
                     <ng-container *ngIf="acct._id !== selectedFromAcctId">
-                        <option [value]="acct.accountNumber" [id]="acct._id"> {{ acct.description }} - {{ acct.accountNumber | digits }}</option>
+                        <option [value]="acct.accountNumber" [id]="acct._id"> {{ acct.description }} - {{ acct.accountNumber | starDigits }}</option>
                     </ng-container>
                 </ng-container>
             </select>

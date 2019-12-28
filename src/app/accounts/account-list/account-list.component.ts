@@ -23,7 +23,7 @@ export class AccountListComponent implements OnInit, OnDestroy {
   }
 
   onFetchAccounts() {
-    return this.accountService.fetchAccounts().subscribe(accounts => {
+    return this.accountService.getAccounts().subscribe(accounts => {
       this.accounts = accounts;
     }, error => {
       console.log(error.message);

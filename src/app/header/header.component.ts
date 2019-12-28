@@ -13,12 +13,12 @@ import { SharedSubjectService } from '../shared/services/shared-subject.service'
 export class HeaderComponent implements OnInit, OnDestroy {
 
   isAuthenticated = false;
-  private userSub: Subscription = null;
+  private subscription: Subscription = null;
 
   constructor(private authService: AuthService, private sharedSubjectService: SharedSubjectService) { }
 
   ngOnInit() {
-    this.userSub = this.authService.userSubject.subscribe(user => {
+    this.subscription = this.authService.userSubject.subscribe(user => {
       this.isAuthenticated = !!user;
     });
   }
@@ -32,8 +32,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.userSub) {
-      this.userSub.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 }

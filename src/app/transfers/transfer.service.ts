@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 
+import { Account } from '../accounts/account.model';
 import { Transfer } from './transfer.model';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+
 
 export interface TransferResponseData {
   message: string;
@@ -28,7 +30,43 @@ export interface TransferResponseData {
 export class TransferService {
   BASEURL = environment.BASEURL;
 
+  accounts: Account[];
+
   constructor(private http: HttpClient) {}
+
+  getTransfers() {
+    const URL = this.BASEURL + '/transaction/transfers';
+    return this.http.get<{ [transfers: string]: Transfer[] }>(URL).pipe(
+      map(responseData => {
+        let tranArray: Transfer[] = null;
+        tranArray = responseData.transactions;
+        const accounts = this.getTransferAccounts();
+        return tranArray.map(transfer => {
+          let updatedTransfer = transfer;
+          for (const account of accounts) {
+            let tempTransfer;
+            if (transfer.to === account.accountNumber) {
+              tempTransfer = {
+                ...updatedTransfer,
+                toAccountName: account.description
+              };
+              updatedTransfer = tempTransfer;
+            } else if (transfer.from === account.accountNumber) {
+              tempTransfer = {
+                ...updatedTransfer,
+                fromAccountName: account.description
+              };
+              updatedTransfer = tempTransfer;
+            }
+          }
+          return updatedTransfer;
+         });
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
 
   addTransfer(transfer: Transfer) {
     const URL = this.BASEURL + '/transaction/transfer';
@@ -49,9 +87,18 @@ export class TransferService {
         frequency,
         memo
       })
-      .pipe(catchError(errorRes => {
-        return throwError(errorRes);
-      })
-    );
+      .pipe(
+        catchError(errorRes => {
+          return throwError(errorRes);
+        })
+      );
+  }
+
+  setTransferAccounts(accounts: Account[]) {
+    this.accounts = accounts;
+  }
+
+  getTransferAccounts() {
+    return this.accounts;
   }
 }

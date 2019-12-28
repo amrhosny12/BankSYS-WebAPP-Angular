@@ -1,9 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
 import { NgForm, NgModelGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { Account } from '../../accounts/account.model';
-import { AccountService } from '../../accounts/account.service';
 import { Transfer } from '../transfer.model';
 import { TransferService } from '../transfer.service';
 
@@ -12,7 +11,7 @@ import { TransferService } from '../transfer.service';
   templateUrl: './transfer-money.component.html',
   styleUrls: ['./transfer-money.component.css']
 })
-export class TransferMoneyComponent implements OnInit, OnDestroy {
+export class TransferMoneyComponent implements OnInit, DoCheck, OnDestroy {
 
   subscription: Subscription;
 
@@ -21,29 +20,24 @@ export class TransferMoneyComponent implements OnInit, OnDestroy {
   selectTypeDef = 0;
   selectFreqDef = 0;
 
-  accounts: Account[];
   transfer: Transfer = null;
+  accounts: Account[];
 
   showRecurringFields: boolean;
   selectedFromAcctId: string;
   selectedToAcctId: string;
 
-  constructor(private accountService: AccountService, private transferService: TransferService) {}
+  constructor(private transferService: TransferService) {}
 
   ngOnInit() {
     this.showRecurringFields = false;
     this.selectedFromAcctId = '';
     this.selectedToAcctId = '';
-    this.subscription = this.accountService.fetchAccounts().subscribe(
-      accounts => {
-        this.accounts = accounts;
-      },
-      error => {
-        console.log(error.message);
-      }
-    );
   }
 
+  ngDoCheck() {
+    this.accounts = this.transferService.getTransferAccounts();
+  }
   onSubmit(form: NgForm) {
     const from = form.value.accountData.from;
     const to = form.value.accountData.to;
@@ -116,6 +110,8 @@ export class TransferMoneyComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

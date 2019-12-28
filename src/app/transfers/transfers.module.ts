@@ -4,15 +4,17 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { TransfersComponent } from '../transfers/transfers.component';
-import { TransferMoneyComponent } from '../transfers/transfer-money/transfer-money.component';
-import { TransfersRoutingModule } from './transfers.routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { TransfersRoutingModule } from './transfers.routing.module';
+import { TransfersComponent } from './transfers.component';
+import { TransferMoneyComponent } from './transfer-money/transfer-money.component';
+import { TransferHistoryComponent } from './transfer-history/transfer-history.component';
 
 @NgModule({
   declarations: [
     TransfersComponent,
-    TransferMoneyComponent
+    TransferMoneyComponent,
+    TransferHistoryComponent
   ],
   imports: [
     FormsModule,
