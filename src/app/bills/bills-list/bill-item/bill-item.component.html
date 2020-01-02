@@ -1,0 +1,15 @@
+<div class="col-xs-12 col-md-4">
+  <div class="card">
+    <div class="container">
+      <h3 style="margin-bottom: 2rem;"><b>{{ bill.name }}</b>
+        <div class="bill-icons">
+            <span [ngClass]="getIcon()"></span>
+          </div>
+        </h3>
+      <h5><b>Type - </b> {{ bill.type }}</h5>
+      <h5><b>Day of Month - </b> {{ bill.dayOfMonth }}</h5>
+      <h5><b>Amount - </b> ${{ bill.amount }}</h5>
+      <h5><b>Description - </b> {{ bill.description }}</h5>
+    </div>
+  </div>
+</div>

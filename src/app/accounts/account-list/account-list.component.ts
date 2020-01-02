@@ -15,8 +15,9 @@ export class AccountListComponent implements OnInit, OnDestroy {
 
   accounts: Account[];
   subscription: Subscription;
+  isAccountsEmpty = false;
 
-  constructor(private accountService: AccountService, private sharedSubjectService: SharedSubjectService) { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit() {
     this.subscription = this.onFetchAccounts();
@@ -24,7 +25,11 @@ export class AccountListComponent implements OnInit, OnDestroy {
 
   onFetchAccounts() {
     return this.accountService.getAccounts().subscribe(accounts => {
-      this.accounts = accounts;
+      if (accounts.length === 0) {
+        this.isAccountsEmpty = true;
+      } else {
+        this.accounts = accounts;
+      }
     }, error => {
       console.log(error.message);
     });

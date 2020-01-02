@@ -10,6 +10,7 @@ export class BillsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

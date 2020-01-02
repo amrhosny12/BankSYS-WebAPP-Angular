@@ -1,21 +1,26 @@
-<div style="overflow-x:auto;">
-  <table class="table">
-    <thead class="thead-light">
-      <tr>
-        <th scope="col">From</th>
-        <th scope="col">To</th>
-        <th scope="col">Amount</th>
-        <th scope="col">Type</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let transfer of transfers; let i = index">
-        <td>{{ transfer.fromAccountName }} - {{ transfer.from | starDigits }}</td>
-        <td>{{ transfer.toAccountName }} - {{ transfer.to | starDigits }}</td>
-        <td>${{ transfer.amount }}</td>
-        <td>{{ transfer.type | transType }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<ng-container *ngIf="isTransfersEmpty">
+  <h2>No Transfers Found !</h2>
+</ng-container>
+<ng-container *ngIf="!isTransfersEmpty">
+  <div style="overflow-x:auto;">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">From</th>
+          <th scope="col">To</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transfer of transfers; let i = index">
+          <td>{{ transfer.fromAccountName }} - {{ transfer.from | starDigits }}</td>
+          <td>{{ transfer.toAccountName }} - {{ transfer.to | starDigits }}</td>
+          <td>${{ transfer.amount }}</td>
+          <td>{{ transfer.type | transType }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-container>
 

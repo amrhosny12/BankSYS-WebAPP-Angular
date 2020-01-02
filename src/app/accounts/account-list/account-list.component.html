@@ -1,1 +1,7 @@
-<app-account-item *ngFor="let acct of accounts" [account]="acct"></app-account-item>
+<ng-container *ngIf="isAccountsEmpty">
+<h2>No Accounts Found !</h2>
+</ng-container>
+
+<ng-container *ngIf="!isAccountsEmpty">
+    <app-account-item *ngFor="let acct of accounts" [account]="acct"></app-account-item>
+</ng-container>

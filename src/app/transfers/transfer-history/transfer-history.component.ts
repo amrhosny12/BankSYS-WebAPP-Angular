@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs';
 
 import { TransferService } from '../transfer.service';
 import { Transfer } from '../transfer.model';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-transfer-history',
@@ -13,13 +12,18 @@ import { map } from 'rxjs/operators';
 export class TransferHistoryComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   transfers: Transfer[] = [];
+  isTransfersEmpty = false;
 
   constructor(private transferService: TransferService) {}
 
   ngOnInit() {
     this.subscription = this.transferService.getTransfers().subscribe(
       transfers => {
-        this.transfers = transfers;
+        if (transfers.length === 0 ) {
+          this.isTransfersEmpty = true;
+        } else {
+          this.transfers = transfers;
+        }
       },
       error => {
         console.log(error.message);

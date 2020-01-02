@@ -19,7 +19,6 @@ export class TransfersComponent implements OnInit, OnDestroy {
     this.subscription = this.accountService.getAccounts().subscribe(
       accounts => {
         this.transferService.setTransferAccounts(accounts);
-        console.log('TRANSFER - ON INIT');
       },
       error => {
         console.log(error.message);

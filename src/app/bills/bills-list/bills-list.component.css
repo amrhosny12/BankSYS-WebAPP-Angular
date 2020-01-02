@@ -1,0 +1,5 @@
+.bills-group > .row {
+    overflow-x: auto;
+    white-space: nowrap;
+    height: 25rem;    
+}
