@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-xs-12 col-md-12 col-md-offset-3">
+        <h2>Please Enter Bill Information</h2>
+        <hr>
+        <form #addBillForm="ngForm" (ngSubmit)="onSubmit(addBillForm)">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-control" ngModel name="name" required min="2">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group">
+                        <label for="type">Type</label>
+                        <select id="type" class="form-control" ngModel name="type" required>
+                            <option value="Utility">Utility</option>
+                            <option value="Grocery">Grocery</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Allowance">allowance</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">$</span>	
+                            <input type="number" id="amount" class="form-control" ngModel name="amount" required min="0">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group">
+                        <label for="dayOfMonth">Day Of Month</label>
+                        <input type="number" id="dayOfMonth" class="form-control" ngModel name="dayOfMonth" required min="0" max="28">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" placeholder="Max of 75 Characters" class="form-control" cols="10" rows="5" ngModel name="description" required maxlength="75"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="pull-right">
+                <button type="button" class="btn btn-link" (click)="closeModel(addBillForm)">Cancel</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!addBillForm.valid">Add</button>
+            </div>
+        </form>
+    </div>
+</div>

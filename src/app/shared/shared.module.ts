@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { FourDigitPipe } from './pipes/four-digit.pipe';
-import { TransactionType } from './pipes/transaction-type.pipe';
+import { TransactionTypePipe } from './pipes/transaction-type.pipe';
+import { OrdinalDatePipe } from './pipes/ordinal-date.pipe';
 
 @NgModule({
   declarations: [
     LoadingSpinnerComponent,
     FourDigitPipe,
-    TransactionType
+    TransactionTypePipe,
+    OrdinalDatePipe
   ],
   imports: [
     CommonModule
@@ -17,7 +19,8 @@ import { TransactionType } from './pipes/transaction-type.pipe';
   exports: [
     LoadingSpinnerComponent,
     FourDigitPipe,
-    TransactionType
+    TransactionTypePipe,
+    OrdinalDatePipe
   ]
 })
 export class SharedModule { }

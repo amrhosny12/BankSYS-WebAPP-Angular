@@ -22,6 +22,14 @@ export class BillItemComponent implements OnInit {
     console.log(this.bill);
   }
 
+  onEditBill() {
+
+  }
+
+  onDeleteBill() {
+    
+  }
+
   getIcon() {
     if ((this.bill.type).toLowerCase() === this.TYPE_UTILITY) {
       return 'glyphicon glyphicon-wrench';

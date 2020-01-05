@@ -14,10 +14,21 @@
       </div>
     </div>
     <div *ngIf="!isCollapsed" class="pull-right">
-      <button type="button" class="btn btn-primary" title="Add Account" (click)="openAccountModel()" [attr.aria-expanded]="!isCollapsed" aria-controls="addAccountForm">
-        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="font-size: 25px;"></span>
+      <button
+        type="button"
+        class="btn btn-primary"
+        title="Add Account"
+        (click)="openAccountModel()"
+        [attr.aria-expanded]="!isCollapsed"
+        aria-controls="addAccountForm"
+      >
+        <span
+          class="glyphicon glyphicon-plus"
+          aria-hidden="true"
+          style="font-size: 20px;"
+        ></span>
       </button>
-  </div>
+    </div>
   </div>
   <div class="col-xs-12 col-md-4" *ngIf="splitSection">
     <div class="panel panel-default">
@@ -34,11 +45,12 @@
     </div>
   </div>
 </div>
+<br><br>
 <div class="row">
   <div class="col-xs-12 col-md-6 col-md-offset-1">
-    <div id="addAccountForm" [ngbCollapse]="!isCollapsed"> <br>
+    <div id="addAccountForm" [ngbCollapse]="!isCollapsed">
+      <br/>
       <app-account-add></app-account-add>
     </div>
   </div>
-
 </div>

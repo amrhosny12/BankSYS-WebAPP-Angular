@@ -15,8 +15,11 @@ export class BillsListComponent implements OnInit {
   constructor( private billService: BillService ) { }
 
   ngOnInit() {
-    this.bills = this.billService.getBills();
-    console.log(this.bills);
+    this.billService.getBills().subscribe(bills => {
+      this.bills = bills;
+    }, error => {
+      console.log(error.message);
+    });
   }
 
 }

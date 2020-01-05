@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
     name: 'transType'
 })
-export class TransactionType implements PipeTransform {
+export class TransactionTypePipe implements PipeTransform {
     transform(value: any) {
         if (value === 0) {
             return 'Immediate';

@@ -5,3 +5,4 @@ export interface Bill {
     amount: string;
     dayOfMonth: string;
 }
+
